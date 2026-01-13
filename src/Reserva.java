@@ -1,11 +1,11 @@
-import java.util.ArrayList;
-
 public class Reserva {
     
 
     private String nomeSalaReservada;
     private int horarioInicio;
     private int horarioFim;
+
+   
 
     public void setNomeSalaReservada(Sala sala) {
         this.nomeSalaReservada = sala.getNome();
@@ -32,7 +32,9 @@ public class Reserva {
         return horarioFim;
     }
 
-    
+     public String getNomeSalaReservada(){
+        return nomeSalaReservada;
+    }
 
     
 
