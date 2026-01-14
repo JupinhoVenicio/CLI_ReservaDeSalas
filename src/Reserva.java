@@ -1,14 +1,18 @@
 public class Reserva {
     
 
+    private Sala sala;
     private String nomeSalaReservada;
     private int horarioInicio;
     private int horarioFim;
 
    
+    public void setSala(Sala sala){
+        this.sala = sala;
+    }
 
-    public void setNomeSalaReservada(Sala sala) {
-        this.nomeSalaReservada = sala.getNome();
+    public void setNomeSalaReservada() {
+        this.nomeSalaReservada = this.sala.getNome();
     }
 
     public void setHorario(int horarioInicio, int horarioFim) {
@@ -30,6 +34,10 @@ public class Reserva {
 
     public int getHorarioFim() {
         return horarioFim;
+    }
+
+    public Sala getSala(){
+        return sala;
     }
 
      public String getNomeSalaReservada(){
