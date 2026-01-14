@@ -63,6 +63,13 @@ public class GerenciadorDeSalas {
 
     }
 
+    public int getSalasTotaisSize(){
+        return salasTotais.size();
+    }
+     public int getSalasReservadasSize(){
+        return salasReservadas.size();
+    }
+
     public boolean isNenhumaSala() {
         if (salasTotais.size() == 0) {
             return true;
