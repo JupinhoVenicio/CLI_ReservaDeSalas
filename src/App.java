@@ -98,11 +98,12 @@ public class App {
                     System.out.println("Opção Inválida.");
                 } else {
 
-                    Sala sala = gerenciador.getAtributosDaSalaTotal(userInput-1);
+                    Sala sala = gerenciador.getAtributosDaSalaTotal(userInput - 1);
 
                     Reserva reserva = new Reserva();
 
-                    reserva.setNomeSalaReservada(sala);
+                    reserva.setSala(sala);
+                    reserva.setNomeSalaReservada();
 
                     System.out.print("\nHorário de Início: ");
                     int HorarioInicio = teclado.nextInt();
@@ -111,7 +112,7 @@ public class App {
 
                     reserva.setHorario(HorarioInicio, HorarioFim);
 
-                    if (gerenciador.temHorarioConflito(reserva) == true) {
+                    if (gerenciador.temHorarioConflito(sala,reserva) == true) {
                         System.out.println("\nHorario em conflito com outra reserva.");
                     } else {
                         System.out.println("\nReserva Efetuada.");
