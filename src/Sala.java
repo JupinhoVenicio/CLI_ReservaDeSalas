@@ -84,6 +84,13 @@ public class Sala {
 
         return statusDeReserva;
     }
+
+    public void reservarStatus(){
+        this.statusDeReserva = SalaStatus.RESERVADA;
+    }
+    public void desreservarStatus(){
+        this.statusDeReserva = SalaStatus.DISPONIVEL;
+    }
    
 
 }
