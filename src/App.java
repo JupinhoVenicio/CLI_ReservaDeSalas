@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Enum.MenuOpcoes;
@@ -77,6 +78,54 @@ public class App {
     }
 
     public void executarCriarReserva() {
+
+        int userInput;
+
+        try {
+
+            if (gerenciador.isNenhumaSala() == true) {
+
+                System.out.println("\nNenhuma sala foi cadastrada.");
+
+            } else {
+
+                gerenciador.listarSalasTotais();
+
+                System.out.print("Escolha (Número): ");
+                userInput = teclado.nextInt();
+
+                if ((userInput - 1) < 0 || (userInput - 1) >= gerenciador.getSalasTotaisSize()) {
+                    System.out.println("Opção Inválida.");
+                } else {
+
+                    Sala sala = gerenciador.getAtributosDaSalaTotal(userInput-1);
+
+                    Reserva reserva = new Reserva();
+
+                    reserva.setNomeSalaReservada(sala);
+
+                    System.out.print("\nHorário de Início: ");
+                    int HorarioInicio = teclado.nextInt();
+                    System.out.print("\n\nHorário de Fim: ");
+                    int HorarioFim = teclado.nextInt();
+
+                    reserva.setHorario(HorarioInicio, HorarioFim);
+
+                    if (gerenciador.temHorarioConflito(reserva) == true) {
+                        System.out.println("\nHorario em conflito com outra reserva.");
+                    } else {
+                        System.out.println("\nReserva Efetuada.");
+                        gerenciador.reservarSala(reserva);
+                    }
+
+                }
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("\nEntrada Inválida.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+
+        }
 
     }
 
