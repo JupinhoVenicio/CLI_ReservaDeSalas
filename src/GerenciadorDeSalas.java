@@ -34,12 +34,30 @@ public class GerenciadorDeSalas {
 
     public void reservarSala(Reserva salaReservada) {
         salasReservadas.add(salaReservada);
+        salaReservada.getSala().reservarStatus();
 
     }
 
     public void desreservarSala(Reserva salaReservada) {
 
+        boolean temNenhumaOutraReserva = true;
+
         salasReservadas.remove(salaReservada);
+
+        for (Reserva reserva : salasReservadas) {
+
+            if (reserva.getSala() == salaReservada.getSala()) {
+
+                temNenhumaOutraReserva = false;
+                break;
+
+            }
+
+        }
+
+        if (temNenhumaOutraReserva) {
+            salaReservada.getSala().desreservarStatus();
+        }
     }
 
     public void listarSalasTotais() {
