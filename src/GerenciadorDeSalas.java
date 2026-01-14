@@ -70,6 +70,13 @@ public class GerenciadorDeSalas {
         return salasReservadas.size();
     }
 
+    public Sala getAtributosDaSalaTotal(int index){
+        return salasTotais.get(index);
+    }
+     public Reserva getAtributosDaSalaReservada(int index){
+        return salasReservadas.get(index);
+    }
+
     public boolean isNenhumaSala() {
         if (salasTotais.size() == 0) {
             return true;
