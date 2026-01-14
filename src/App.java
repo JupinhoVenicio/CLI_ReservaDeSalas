@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -24,7 +24,7 @@ public class App {
             int capacidade = teclado.nextInt();
             salaNova.setCapacidade(capacidade);
 
-            System.out.println("\n\nTem projetor (Y/N)\nY = Sim\tN = Não");
+            System.out.println("\n\nTem projetor (Y/N)\nY = Sim\t\tN = Não");
             teclado.nextLine();
             String projetor = teclado.nextLine();
             salaNova.setProjetor(salaNova.projetorStringToChar(projetor));
@@ -50,7 +50,7 @@ public class App {
 
             gerenciador.listarSalasTotais();
 
-            System.out.print("Remova (Número): ");
+            System.out.print("\nRemova (Número): ");
             userInput = teclado.nextInt();
 
             if ((userInput - 1) < 0 || (userInput - 1) >= gerenciador.getSalasTotaisSize()) {
@@ -78,8 +78,8 @@ public class App {
         if (!gerenciador.isNenhumaSala()) {
             gerenciador.listarSalasTotais();
 
-        }else{
-            System.out.println("\nNenhuma Sala foi cadastrada.");
+        } else {
+            System.out.println("\nNenhuma sala foi cadastrada.");
         }
 
     }
@@ -88,17 +88,16 @@ public class App {
 
         int userInput;
 
-        try {
+        if (gerenciador.isNenhumaSala() == true) {
 
-            if (gerenciador.isNenhumaSala() == true) {
+            System.out.println("\nNenhuma sala foi cadastrada.");
 
-                System.out.println("\nNenhuma sala foi cadastrada.");
+        } else {
 
-            } else {
-
+            try {
                 gerenciador.listarSalasTotais();
 
-                System.out.print("Escolha (Número): ");
+                System.out.print("\nEscolha (Número): ");
                 userInput = teclado.nextInt();
 
                 if ((userInput - 1) < 0 || (userInput - 1) >= gerenciador.getSalasTotaisSize()) {
@@ -114,7 +113,7 @@ public class App {
 
                     System.out.print("\nHorário de Início: ");
                     int HorarioInicio = teclado.nextInt();
-                    System.out.print("\n\nHorário de Fim: ");
+                    System.out.print("\nHorário de Fim: ");
                     int HorarioFim = teclado.nextInt();
 
                     reserva.setHorario(HorarioInicio, HorarioFim);
@@ -127,7 +126,46 @@ public class App {
                     }
 
                 }
+            } catch (InputMismatchException e) {
+                System.out.println("\nEntrada Inválida.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+
             }
+        }
+
+    }
+
+    public void executarCancelarReserva() {
+
+        int userInput;
+        try {
+            if (gerenciador.isNenhumaSalaReservada()) {
+
+                System.out.println("\nNenhuma sala foi reservada.");
+
+            } else {
+
+                gerenciador.listarSalasReservadas();
+
+                System.out.print("\nRemova (Número): ");
+                userInput = teclado.nextInt();
+
+                if ((userInput - 1) < 0 || (userInput - 1) >= gerenciador.getSalasReservadasSize()) {
+                    System.out.println("Opção Inválida.");
+                } else {
+
+                    Reserva reserva = gerenciador.getAtributosDaSalaReservada(userInput - 1);
+
+                  
+                        gerenciador.desreservarSala(reserva);
+                        System.out.println("\nReserva Cancelada.");
+                    }
+
+                }
+
+            
+
         } catch (InputMismatchException e) {
             System.out.println("\nEntrada Inválida.");
         } catch (IllegalArgumentException e) {
@@ -137,11 +175,14 @@ public class App {
 
     }
 
-    public void executarCancelarReserva() {
-
-    }
-
     public void executarListarReservas() {
+
+         if (!gerenciador.isNenhumaSalaReservada()) {
+            gerenciador.listarSalasReservadas();
+
+        } else {
+            System.out.println("\nNenhuma sala foi reservada.");
+        }
 
     }
 
