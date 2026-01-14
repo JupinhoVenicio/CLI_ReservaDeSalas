@@ -1,3 +1,4 @@
+package Classes;
 import Enum.SalaStatus;
 
 public class Sala {

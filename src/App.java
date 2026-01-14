@@ -2,6 +2,9 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Classes.GerenciadorDeSalas;
+import Classes.Reserva;
+import Classes.Sala;
 import Enum.MenuOpcoes;
 import Enum.SalaStatus;
 
