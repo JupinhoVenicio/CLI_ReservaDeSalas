@@ -42,6 +42,27 @@ public class GerenciadorDeSalas {
         salasReservadas.remove(salaReservada);
     }
 
+    public void listarSalasTotais(){
+
+        int i = 1;
+        for(Sala sala : salasTotais){
+
+            System.out.println("\n"+(i)+" - Sala: "+sala.getNome()+" | Capacidade: "+sala.getCapacidade()+" | Tem projetor: "+sala.getProjetor());
+            i = i+1;
+        }
+
+    }
+    public void listarSalasReservadas(){
+
+          int i = 1;
+        for(Reserva sala : salasReservadas){
+
+            System.out.println("\n"+(i)+" - Sala: "+sala.getNomeSalaReservada()+" | Horário: "+sala.getHorarioInicio()+":00 até "+sala.getHorarioFim()+":00");
+            i = i+1;
+        }
+
+    }
+
     public boolean isNenhumaSala() {
         if (salasTotais.size() == 0) {
             return true;
