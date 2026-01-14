@@ -30,6 +30,7 @@ public class App {
             salaNova.setProjetor(salaNova.projetorStringToChar(projetor));
 
             gerenciador.registrarSala(salaNova);
+            System.out.println("\nSala Cadastrada.");
 
         } catch (IllegalArgumentException e) {
             System.out.println("\n" + e.getMessage());
@@ -63,6 +64,7 @@ public class App {
 
                 } else {
                     gerenciador.removerSala(sala);
+                    System.out.println("\nSala Removida.");
                 }
 
             }
@@ -73,7 +75,12 @@ public class App {
 
     public void executarListarSalas() {
 
-        gerenciador.listarSalasTotais();
+        if (!gerenciador.isNenhumaSala()) {
+            gerenciador.listarSalasTotais();
+
+        }else{
+            System.out.println("\nNenhuma Sala foi cadastrada.");
+        }
 
     }
 
@@ -112,7 +119,7 @@ public class App {
 
                     reserva.setHorario(HorarioInicio, HorarioFim);
 
-                    if (gerenciador.temHorarioConflito(sala,reserva) == true) {
+                    if (gerenciador.temHorarioConflito(sala, reserva) == true) {
                         System.out.println("\nHorario em conflito com outra reserva.");
                     } else {
                         System.out.println("\nReserva Efetuada.");
