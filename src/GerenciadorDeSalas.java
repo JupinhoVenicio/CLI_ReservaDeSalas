@@ -4,21 +4,22 @@ public class GerenciadorDeSalas {
     private ArrayList<Sala> salasTotais = new ArrayList<>();
     private ArrayList<Reserva> salasReservadas = new ArrayList<>();
 
-    public boolean temHorarioConflito(Reserva salaNova) {
+    public boolean temHorarioConflito(Sala sala, Reserva salaNova) {
 
         for (Reserva index : salasReservadas) {
 
-            if (salaNova.getHorarioFim() <= index.getHorarioInicio()) {
-            
-            }else if(salaNova.getHorarioInicio()>= index.getHorarioFim()){
-                
-            }else{
-                return true;
-            }
+            if (sala == index.getSala()) {
+                if (salaNova.getHorarioFim() <= index.getHorarioInicio()) {
 
+                } else if (salaNova.getHorarioInicio() >= index.getHorarioFim()) {
+
+                } else {
+                    return true;
+                }
+
+            }
         }
         return false;
-
     }
 
     public void registrarSala(Sala sala) {
@@ -28,7 +29,6 @@ public class GerenciadorDeSalas {
 
     public void removerSala(Sala sala) {
         salasTotais.remove(sala);
-        
 
     }
 
@@ -42,38 +42,43 @@ public class GerenciadorDeSalas {
         salasReservadas.remove(salaReservada);
     }
 
-    public void listarSalasTotais(){
+    public void listarSalasTotais() {
 
         int i = 1;
-        for(Sala sala : salasTotais){
+        for (Sala sala : salasTotais) {
 
-            System.out.println("\n"+(i)+" - Sala: "+sala.getNome()+" | Capacidade: "+sala.getCapacidade()+" | Tem projetor: "+sala.getProjetor());
-            i = i+1;
-        }
-
-    }
-    public void listarSalasReservadas(){
-
-          int i = 1;
-        for(Reserva sala : salasReservadas){
-
-            System.out.println("\n"+(i)+" - Sala: "+sala.getNomeSalaReservada()+" | Horário: "+sala.getHorarioInicio()+":00 até "+sala.getHorarioFim()+":00");
-            i = i+1;
+            System.out.println("\n" + (i) + " - Sala: " + sala.getNome() + " | Capacidade: " + sala.getCapacidade()
+                    + " | Tem projetor: " + sala.getProjetor());
+            i = i + 1;
         }
 
     }
 
-    public int getSalasTotaisSize(){
+    public void listarSalasReservadas() {
+
+        int i = 1;
+        for (Reserva sala : salasReservadas) {
+
+            System.out.println("\n" + (i) + " - Sala: " + sala.getNomeSalaReservada() + " | Horário: "
+                    + sala.getHorarioInicio() + ":00 até " + sala.getHorarioFim() + ":00");
+            i = i + 1;
+        }
+
+    }
+
+    public int getSalasTotaisSize() {
         return salasTotais.size();
     }
-     public int getSalasReservadasSize(){
+
+    public int getSalasReservadasSize() {
         return salasReservadas.size();
     }
 
-    public Sala getAtributosDaSalaTotal(int index){
+    public Sala getAtributosDaSalaTotal(int index) {
         return salasTotais.get(index);
     }
-     public Reserva getAtributosDaSalaReservada(int index){
+
+    public Reserva getAtributosDaSalaReservada(int index) {
         return salasReservadas.get(index);
     }
 
