@@ -72,6 +72,8 @@ public class App {
 
     public void executarListarSalas() {
 
+        gerenciador.listarSalasTotais();
+
     }
 
     public void executarCriarReserva() {
