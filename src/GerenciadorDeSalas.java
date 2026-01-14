@@ -26,9 +26,9 @@ public class GerenciadorDeSalas {
 
     }
 
-    public void removerSala(Sala sala, Reserva salaReservada) {
+    public void removerSala(Sala sala) {
         salasTotais.remove(sala);
-        salasReservadas.remove(salaReservada);
+        
 
     }
 

@@ -64,7 +64,10 @@ public class Sala {
         return temProjetor;
     }
 
-    public String getProjetor(String projetor) {
+    public String getProjetor() {
+
+        String projetor;
+
         if (temProjetor == true) {
             projetor = "Sim";
             return projetor;

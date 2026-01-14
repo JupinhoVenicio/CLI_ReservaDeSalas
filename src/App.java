@@ -1,18 +1,17 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 import Enum.MenuOpcoes;
+import Enum.SalaStatus;
 
 public class App {
 
     private Scanner teclado = new Scanner(System.in);
     GerenciadorDeSalas gerenciador = new GerenciadorDeSalas();
-   
 
     public void executarCadastrarSala() {
 
-        try{
+        try {
 
             Sala salaNova = new Sala();
 
@@ -31,13 +30,43 @@ public class App {
 
             gerenciador.registrarSala(salaNova);
 
-        }catch(IllegalArgumentException e){
-                   System.out.println("\n"+e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("\n" + e.getMessage());
         }
 
     }
 
     public void executarRemoverSala() {
+
+        int userInput;
+
+        if (gerenciador.isNenhumaSala() == true) {
+
+            System.out.println("\nNenhuma sala foi cadastrada.");
+
+        } else {
+
+            gerenciador.listarSalasTotais();
+
+            System.out.print("Remova (Número): ");
+            userInput = teclado.nextInt();
+
+            if ((userInput - 1) < 0 || (userInput - 1) >= gerenciador.getSalasTotaisSize()) {
+                System.out.println("Opção Inválida.");
+            } else {
+
+                Sala sala = gerenciador.getAtributosDaSalaTotal(userInput - 1);
+
+                if (sala.getStatusDeReserva() == SalaStatus.RESERVADA) {
+                    System.out.println("\nSala contém reservas. Cancele todas para remover.");
+
+                } else {
+                    gerenciador.removerSala(sala);
+                }
+
+            }
+
+        }
 
     }
 
@@ -61,8 +90,6 @@ public class App {
 
         App app = new App();
         Scanner teclado = new Scanner(System.in);
-
-       
 
         MenuOpcoes opcaoEscolhida;
 
