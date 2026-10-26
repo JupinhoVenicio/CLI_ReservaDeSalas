@@ -4,9 +4,9 @@ package Classes;
 import java.util.Scanner;
 
 public class Input {
-    private Scanner teclado = new Scanner(System.in);
+    static private Scanner teclado = new Scanner(System.in);
 
-    public String st(String mensagem) {
+    static public String st(String mensagem) {
 
         while (true) {
             System.out.println(mensagem);
@@ -20,7 +20,7 @@ public class Input {
         }
 
     }
-    public int in(String mensagem){
+    static public int in(String mensagem){
         while (true) {
             System.out.println(mensagem);
             String userInput = teclado.nextLine();
@@ -42,7 +42,7 @@ public class Input {
 
     }
 
-    public Double db(String mensagem){
+    static public Double db(String mensagem){
          while (true) {
             System.out.println(mensagem);
             String userInput = teclado.nextLine();
@@ -64,7 +64,7 @@ public class Input {
 
     }
 
-    public char ch (String mensagem){
+    static public char ch (String mensagem){
          while (true) {
             System.out.println(mensagem);
             String userInput = teclado.nextLine();
