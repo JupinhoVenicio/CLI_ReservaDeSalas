@@ -1,8 +1,6 @@
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import Classes.GerenciadorDeSalas;
+import Classes.Input;
 import Classes.Reserva;
 import Classes.Sala;
 import Enum.MenuOpcoes;
@@ -10,7 +8,6 @@ import Enum.SalaStatus;
 
 public class App {
 
-    private Scanner teclado = new Scanner(System.in);
     GerenciadorDeSalas gerenciador = new GerenciadorDeSalas();
 
     public void executarCadastrarSala() {
@@ -19,17 +16,14 @@ public class App {
 
             Sala salaNova = new Sala();
 
-            System.out.print("\nNome da Sala: ");
-            String nome = teclado.nextLine();
+            String nome = Input.st("\n\nNome da Sala: ");
+
             salaNova.setNome(nome);
 
-            System.out.print("\n\nCapacidade da Sala (Pessoas): ");
-            int capacidade = teclado.nextInt();
+            int capacidade = Input.in("\n\nCapacidade da Sala (Pessoas): ");
             salaNova.setCapacidade(capacidade);
 
-            System.out.println("\n\nTem projetor (Y/N)\nY = Sim\t\tN = Não");
-            teclado.nextLine();
-            String projetor = teclado.nextLine();
+            String projetor = Input.st("\n\nTem projetor (Y/N)\nY = Sim\t\tN = Não");
             salaNova.setProjetor(salaNova.projetorStringToChar(projetor));
 
             gerenciador.registrarSala(salaNova);
@@ -43,18 +37,17 @@ public class App {
 
     public void executarRemoverSala() {
 
-        int userInput;
-
         if (gerenciador.isNenhumaSala() == true) {
 
             System.out.println("\nNenhuma sala foi cadastrada.");
 
         } else {
 
+            int userInput;
+
             gerenciador.listarSalasTotais();
 
-            System.out.print("\nRemova (Número): ");
-            userInput = teclado.nextInt();
+            userInput = Input.in("\nRemova uma sala (Número da Lista): ");
 
             if ((userInput - 1) < 0 || (userInput - 1) >= gerenciador.getSalasTotaisSize()) {
                 System.out.println("Opção Inválida.");
@@ -100,8 +93,7 @@ public class App {
             try {
                 gerenciador.listarSalasTotais();
 
-                System.out.print("\nEscolha (Número): ");
-                userInput = teclado.nextInt();
+                userInput = Input.in("\nEscolha uma sala (Número da Lista): ");
 
                 if ((userInput - 1) < 0 || (userInput - 1) >= gerenciador.getSalasTotaisSize()) {
                     System.out.println("Opção Inválida.");
@@ -114,23 +106,22 @@ public class App {
                     reserva.setSala(sala);
                     reserva.setNomeSalaReservada();
 
-                    System.out.print("\nHorário de Início: ");
-                    int HorarioInicio = teclado.nextInt();
-                    System.out.print("\nHorário de Fim: ");
-                    int HorarioFim = teclado.nextInt();
+                    int HorarioInicio = Input.in("\nEHorário de Início: ");
+
+                    int HorarioFim = Input.in("\nEHorário de Fim: ");
 
                     reserva.setHorario(HorarioInicio, HorarioFim);
 
                     if (gerenciador.temHorarioConflito(sala, reserva) == true) {
                         System.out.println("\nHorario em conflito com outra reserva.");
                     } else {
-                        System.out.println("\nReserva Efetuada.");
+
                         gerenciador.reservarSala(reserva);
+                        System.out.println("\nReserva Efetuada.");
                     }
 
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("\nEntrada Inválida.");
+
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
 
@@ -151,8 +142,7 @@ public class App {
 
                 gerenciador.listarSalasReservadas();
 
-                System.out.print("\nRemova (Número): ");
-                userInput = teclado.nextInt();
+                userInput = Input.in("\nRemova uma reserva (Número da Lista)");
 
                 if ((userInput - 1) < 0 || (userInput - 1) >= gerenciador.getSalasReservadasSize()) {
                     System.out.println("Opção Inválida.");
@@ -160,17 +150,12 @@ public class App {
 
                     Reserva reserva = gerenciador.getAtributosDaSalaReservada(userInput - 1);
 
-                  
-                        gerenciador.desreservarSala(reserva);
-                        System.out.println("\nReserva Cancelada.");
-                    }
-
+                    gerenciador.desreservarSala(reserva);
+                    System.out.println("\nReserva Cancelada.");
                 }
 
-            
+            }
 
-        } catch (InputMismatchException e) {
-            System.out.println("\nEntrada Inválida.");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
@@ -180,7 +165,7 @@ public class App {
 
     public void executarListarReservas() {
 
-         if (!gerenciador.isNenhumaSalaReservada()) {
+        if (!gerenciador.isNenhumaSalaReservada()) {
             gerenciador.listarSalasReservadas();
 
         } else {
@@ -192,7 +177,6 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         App app = new App();
-        Scanner teclado = new Scanner(System.in);
 
         MenuOpcoes opcaoEscolhida;
 
@@ -205,9 +189,8 @@ public class App {
             }
 
             System.out.println("\n----------------------------------------");
-            System.out.print("\nEscolha (Número): ");
 
-            int userInput = teclado.nextInt();
+            int userInput = Input.in("\nEscolha (Número da Lista): ");
 
             opcaoEscolhida = MenuOpcoes.fromNum(userInput);
 
@@ -245,8 +228,6 @@ public class App {
             }
 
         } while (opcaoEscolhida != MenuOpcoes.SAIR);
-
-        teclado.close();
 
     }
 

@@ -9,7 +9,7 @@ public class Input {
     static public String st(String mensagem) {
 
         while (true) {
-            System.out.println(mensagem);
+            System.out.print(mensagem);
             String userInput = teclado.nextLine();
             if (userInput != null && !userInput.isBlank()) {
                 return userInput;
@@ -22,7 +22,7 @@ public class Input {
     }
     static public int in(String mensagem){
         while (true) {
-            System.out.println(mensagem);
+            System.out.print(mensagem);
             String userInput = teclado.nextLine();
             if (userInput != null && !userInput.isBlank()) {
                 try {
@@ -44,7 +44,7 @@ public class Input {
 
     static public Double db(String mensagem){
          while (true) {
-            System.out.println(mensagem);
+            System.out.print(mensagem);
             String userInput = teclado.nextLine();
             if (userInput != null && !userInput.isBlank()) {
                 try {
@@ -66,7 +66,7 @@ public class Input {
 
     static public char ch (String mensagem){
          while (true) {
-            System.out.println(mensagem);
+            System.out.print(mensagem);
             String userInput = teclado.nextLine();
             if (userInput != null && !userInput.isBlank()) {
                 return userInput.charAt(0);
