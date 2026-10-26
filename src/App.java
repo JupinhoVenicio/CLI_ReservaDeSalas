@@ -23,8 +23,8 @@ public class App {
             int capacidade = Input.in("\n\nCapacidade da Sala (Pessoas): ");
             salaNova.setCapacidade(capacidade);
 
-            String projetor = Input.st("\n\nTem projetor (Y/N)\nY = Sim\t\tN = Não");
-            salaNova.setProjetor(salaNova.projetorStringToChar(projetor));
+            char projetor = Input.ch("\n\nTem projetor (Y/N)\nY = Sim\t\tN = Não");
+            salaNova.setProjetor(projetor);
 
             gerenciador.registrarSala(salaNova);
             System.out.println("\nSala Cadastrada.");
