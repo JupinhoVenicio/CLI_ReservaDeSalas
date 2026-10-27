@@ -13,9 +13,9 @@ public class GerenciadorDeSalas {
         for (Reserva index : salasReservadas) {
 
             if (sala == index.getSala()) {
-                if (salaNova.getDataHorarioFim().isBefore(index.getDataHorarioInicio())) {
+                if (salaNova.getDataHorarioFim().isBefore(index.getDataHorarioInicio())||salaNova.getDataHorarioFim().isEqual(index.getDataHorarioInicio())) {
 
-                } else if (salaNova.getDataHorarioInicio().isAfter(index.getDataHorarioFim())) {
+                } else if (salaNova.getDataHorarioInicio().isAfter(index.getDataHorarioFim())||salaNova.getDataHorarioInicio().isEqual(index.getDataHorarioFim())) {
 
                 } else {
                     return true;
