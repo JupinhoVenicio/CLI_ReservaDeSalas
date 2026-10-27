@@ -20,6 +20,8 @@ public class Reserva {
     public void setHorario(LocalDateTime dataHorarioInicio, LocalDateTime dataHorarioFim) {
         if (dataHorarioInicio.isAfter(dataHorarioFim)) {
             throw new IllegalArgumentException("\nData/Horário de inicio não pode ser depois que a Data/Horário de fim.");
+        } else if (dataHorarioInicio.isEqual(dataHorarioFim)) {
+            throw new IllegalArgumentException("\nData/Horário de início não podem iguais.");
         } else if (dataHorarioInicio.isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("\nData/Horário de início não podem ser no passado.");
         } else {
