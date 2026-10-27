@@ -1,4 +1,6 @@
 
+import java.time.LocalDateTime;
+
 import Classes.GerenciadorDeSalas;
 import Classes.Input;
 import Classes.Reserva;
@@ -106,11 +108,11 @@ public class App {
                     reserva.setSala(sala);
                     reserva.setNomeSalaReservada();
 
-                    int HorarioInicio = Input.in("\nEHorário de Início: ");
+                    LocalDateTime dataHorarioInicio = Input.ldt("\nHorário de Início no formato 24h (dd/MM/yyyy HH:mm):\n\n");
 
-                    int HorarioFim = Input.in("\nEHorário de Fim: ");
+                    LocalDateTime dataHorarioFim = Input.ldt("\nHorário de Fim no formato 24h (dd/MM/yyyy HH:mm):\n\n");
 
-                    reserva.setHorario(HorarioInicio, HorarioFim);
+                    reserva.setHorario(dataHorarioInicio, dataHorarioFim);
 
                     if (gerenciador.temHorarioConflito(sala, reserva) == true) {
                         System.out.println("\nHorario em conflito com outra reserva.");

@@ -83,7 +83,7 @@ public class Input {
 
     static public LocalDateTime ldt(String mensagem) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
 
         while (true) {
             try {

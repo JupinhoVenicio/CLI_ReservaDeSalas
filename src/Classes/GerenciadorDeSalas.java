@@ -1,9 +1,12 @@
 package Classes;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class GerenciadorDeSalas {
     private ArrayList<Sala> salasTotais = new ArrayList<>();
     private ArrayList<Reserva> salasReservadas = new ArrayList<>();
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH/mm");
 
     public boolean temHorarioConflito(Sala sala, Reserva salaNova) {
 
@@ -78,8 +81,8 @@ public class GerenciadorDeSalas {
         int i = 1;
         for (Reserva sala : salasReservadas) {
 
-            System.out.println("\n" + (i) + " - Sala: " + sala.getNomeSalaReservada() + " | Data/Horário: "
-                    + sala.getDataHorarioInicio() + " até " + sala.getDataHorarioFim());
+            System.out.println("\n" + (i) + " - Sala: " + sala.getNomeSalaReservada() + "\n\tInício: "
+                    + sala.getDataHorarioInicio().format(formatter) + "\n\tFim: " + sala.getDataHorarioFim().format(formatter));
             i = i + 1;
         }
 
