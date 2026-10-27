@@ -1,6 +1,8 @@
 package Classes;
 
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Input {
@@ -20,17 +22,18 @@ public class Input {
         }
 
     }
-    static public int in(String mensagem){
+
+    static public int in(String mensagem) {
         while (true) {
             System.out.print(mensagem);
             String userInput = teclado.nextLine();
             if (userInput != null && !userInput.isBlank()) {
                 try {
-                    
+
                     int userInputConverted = Integer.parseInt(userInput);
 
                     return userInputConverted;
-                    
+
                 } catch (NumberFormatException e) {
                     System.out.println("\nEntrada Inválida: Digite somente números.");
                 }
@@ -42,17 +45,17 @@ public class Input {
 
     }
 
-    static public Double db(String mensagem){
-         while (true) {
+    static public Double db(String mensagem) {
+        while (true) {
             System.out.print(mensagem);
             String userInput = teclado.nextLine();
             if (userInput != null && !userInput.isBlank()) {
                 try {
-                    
+
                     double userInputConverted = Double.parseDouble(userInput);
 
                     return userInputConverted;
-                    
+
                 } catch (NumberFormatException e) {
                     System.out.println("\nEntrada Inválida: Digite somente números.");
                 }
@@ -64,8 +67,8 @@ public class Input {
 
     }
 
-    static public char ch (String mensagem){
-         while (true) {
+    static public char ch(String mensagem) {
+        while (true) {
             System.out.print(mensagem);
             String userInput = teclado.nextLine();
             if (userInput != null && !userInput.isBlank()) {
@@ -73,6 +76,25 @@ public class Input {
             } else {
                 System.out.println("\nEntrada Inválida: Caractér não encontrado.");
             }
+
+        }
+
+    }
+
+    static public LocalDateTime ldt(String mensagem) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm:ss");
+
+        while (true) {
+            try {
+                System.out.print(mensagem);
+                String userInput = teclado.nextLine();
+
+                return LocalDateTime.parse(userInput, formatter);
+                
+            } catch (DateTimeParseException e) {
+                System.out.println("\nData/Horário inválido.");
+            } 
 
         }
 
