@@ -29,11 +29,11 @@ public class Reserva {
         }
     }
 
-    public LocalDateTime getdataHorarioInicio() {
+    public LocalDateTime getDataHorarioInicio() {
         return dataHorarioInicio;
     }
 
-    public LocalDateTime getdataHorarioFim() {
+    public LocalDateTime getDataHorarioFim() {
         return dataHorarioFim;
     }
 

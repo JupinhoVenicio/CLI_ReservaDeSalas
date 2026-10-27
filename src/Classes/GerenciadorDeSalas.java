@@ -10,9 +10,9 @@ public class GerenciadorDeSalas {
         for (Reserva index : salasReservadas) {
 
             if (sala == index.getSala()) {
-                if (salaNova.getHorarioFim() <= index.getHorarioInicio()) {
+                if (salaNova.getDataHorarioFim().isBefore(index.getDataHorarioInicio())) {
 
-                } else if (salaNova.getHorarioInicio() >= index.getHorarioFim()) {
+                } else if (salaNova.getDataHorarioInicio().isAfter(index.getDataHorarioFim())) {
 
                 } else {
                     return true;
@@ -78,8 +78,8 @@ public class GerenciadorDeSalas {
         int i = 1;
         for (Reserva sala : salasReservadas) {
 
-            System.out.println("\n" + (i) + " - Sala: " + sala.getNomeSalaReservada() + " | Horário: "
-                    + sala.getHorarioInicio() + ":00 até " + sala.getHorarioFim() + ":00");
+            System.out.println("\n" + (i) + " - Sala: " + sala.getNomeSalaReservada() + " | Data/Horário: "
+                    + sala.getDataHorarioInicio() + " até " + sala.getDataHorarioFim());
             i = i + 1;
         }
 
