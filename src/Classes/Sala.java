@@ -9,6 +9,21 @@ public class Sala {
     private boolean temProjetor;
     private SalaStatus statusDeReserva = SalaStatus.DISPONIVEL;
 
+
+    
+    public Sala(String nome, int capacidade, boolean temProjetor) {
+
+        if (nome == null || nome.isBlank()){
+            throw new IllegalArgumentException("\nEntrada Inválida: Campo de nome vazio.");
+        }
+        this.nome = nome;
+        if(capacidade<=0){
+            throw new IllegalArgumentException("\nEntrada Inválida: Salá não pode abrigar menos de 1 pessoa.");
+        }
+        this.capacidade = capacidade;
+        this.temProjetor = temProjetor;
+    }
+
     public String getNome() {
 
         return nome;
@@ -28,25 +43,19 @@ public class Sala {
     public void setCapacidade(int capacidade) {
 
         if (capacidade <= 0) {
-            throw new IllegalArgumentException("\nEntrada Inválida: Capacidade Negativa.");
+            
         }
 
         this.capacidade = capacidade;
 
     }
 
-    public void setProjetor(char input) {
-        if (Character.toLowerCase(input) == 'y') {
-            this.temProjetor = true;
-        } else if (Character.toLowerCase(input) == 'n') {
-            this.temProjetor = false;
-        } else {
-            throw new IllegalArgumentException("\nEntrada Inválida: Nenhuma opção foi selecionada.");
-        }
+    public void setProjetor(boolean temProjetor) {
+       this.temProjetor = temProjetor;
 
     }
 
-    public boolean isTemProjetor() {
+    public boolean temProjetor() {
 
         return temProjetor;
     }
