@@ -1,5 +1,6 @@
 package Classes;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -9,16 +10,16 @@ public class GerenciadorDeSalas {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm");
 
-    public boolean temHorarioConflito(Sala sala, Reserva salaNova) {
+    public boolean temHorarioConflito(Sala sala, LocalDateTime dataHorarioInicio, LocalDateTime dataHorarioFim) {
 
         for (Reserva index : salasReservadas) {
 
-            if (sala == index.getSala()) {
+            if (sala.equals(index.getSala())) {
 
-                boolean fimNovoAntesDoInicioIndex = salaNova.getDataHorarioFim().isBefore(index.getDataHorarioInicio());
-                boolean inicioNovoDepoisDofimIndex = salaNova.getDataHorarioInicio().isAfter(index.getDataHorarioFim());
+                boolean fimNovoAntesDoInicioIndex = !dataHorarioFim.isAfter(index.getDataHorarioInicio());
+                boolean inicioNovoDepoisDofimIndex = !dataHorarioInicio.isBefore(index.getDataHorarioFim());
 
-                if (!fimNovoAntesDoInicioIndex && inicioNovoDepoisDofimIndex) {
+                if (!(fimNovoAntesDoInicioIndex || inicioNovoDepoisDofimIndex)) {
                     return true;
                 }
 
