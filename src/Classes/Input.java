@@ -81,6 +81,15 @@ public class Input {
 
     }
 
+    static public boolean yn (String mensagem){
+        while(true){
+            char c = Character.toLowerCase(ch(mensagem));
+            if(c == 'y') return true;
+            if (c == 'n') return false;
+            System.out.println("");
+        }
+    }
+
     static public LocalDateTime ldt(String mensagem) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
