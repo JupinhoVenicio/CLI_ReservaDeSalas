@@ -49,28 +49,32 @@ public class GerenciadorDeSalas {
 
     }
 
-    public void listarSalasTotais() {
+    public String listarSalasTotais() {
 
         int i = 1;
+        StringBuilder sb = new StringBuilder();
         for (Sala sala : salasTotais) {
 
-            System.out.println("\n" + (i) + " - Sala: " + sala.getNome() + " | Capacidade: " + sala.getCapacidade()
+            sb.append("\n" + (i) + " - Sala: " + sala.getNome() + " | Capacidade: " + sala.getCapacidade()
                     + " | Tem projetor: " + sala.getProjetor());
             i = i + 1;
         }
-
+        return sb.toString();
     }
 
-    public void listarSalasReservadas() {
+    public String listarSalasReservadas() {
 
         int i = 1;
+        StringBuilder sb = new StringBuilder();
         for (Reserva sala : salasReservadas) {
 
-            System.out.println("\n" + (i) + " - Sala: " + sala.getNomeSalaReservada() + "\n\tInício: "
+            sb.append("\n" + (i) + " - Sala: " + sala.getNomeSalaReservada() + "\n\tInício: "
                     + sala.getDataHorarioInicio().format(formatter) + "\n\tFim: "
                     + sala.getDataHorarioFim().format(formatter));
             i = i + 1;
         }
+
+        return sb.toString();
 
     }
 
