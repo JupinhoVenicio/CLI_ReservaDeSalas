@@ -16,18 +16,13 @@ public class App {
 
         try {
 
-            
-
             String nome = Input.st("\n\nNome da Sala: ");
 
-        
             int capacidade = Input.in("\n\nCapacidade da Sala (Pessoas): ");
-            
 
             boolean projetor = Input.yn("\n\nTem projetor (Y/N)\nY = Sim\t\tN = Não");
 
             Sala salaNova = new Sala(nome, capacidade, projetor);
-           
 
             gerenciador.registrarSala(salaNova);
             System.out.println("\nSala Cadastrada.");
@@ -104,21 +99,15 @@ public class App {
 
                     Sala sala = gerenciador.getAtributosDaSalaTotal(userInput - 1);
 
-                    Reserva reserva = new Reserva();
-
-                    reserva.setSala(sala);
-                    reserva.setNomeSalaReservada();
-
-                    LocalDateTime dataHorarioInicio = Input.ldt("\nHorário de Início no formato 24h (dd/MM/yyyy HH:mm):\n\n");
+                    LocalDateTime dataHorarioInicio = Input
+                            .ldt("\nHorário de Início no formato 24h (dd/MM/yyyy HH:mm):\n\n");
 
                     LocalDateTime dataHorarioFim = Input.ldt("\nHorário de Fim no formato 24h (dd/MM/yyyy HH:mm):\n\n");
 
-                    reserva.setHorario(dataHorarioInicio, dataHorarioFim);
-
-                    if (gerenciador.temHorarioConflito(sala, reserva) == true) {
+                    if (gerenciador.temHorarioConflito(sala, dataHorarioInicio, dataHorarioFim)) {
                         System.out.println("\nHorario em conflito com outra reserva.");
                     } else {
-
+                        Reserva reserva = new Reserva(sala, dataHorarioInicio, dataHorarioFim);
                         gerenciador.reservarSala(reserva);
                         System.out.println("\nReserva Efetuada.");
                     }
