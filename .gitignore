@@ -1,0 +1,6 @@
+
+
+# Ignore compiled output folder
+bin/
+# Ignore compiled java bytecode files
+*.class
