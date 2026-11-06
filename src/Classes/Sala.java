@@ -1,6 +1,6 @@
 package Classes;
 
-import Enum.SalaStatus;
+import Classes.Enums.SalaStatus;
 
 public class Sala {
 

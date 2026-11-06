@@ -5,8 +5,8 @@ import Classes.GerenciadorDeSalas;
 import Classes.Input;
 import Classes.Reserva;
 import Classes.Sala;
-import Enum.MenuOpcoes;
-import Enum.SalaStatus;
+import Classes.Enums.MenuOpcoes;
+import Classes.Enums.SalaStatus;
 
 public class App {
 
