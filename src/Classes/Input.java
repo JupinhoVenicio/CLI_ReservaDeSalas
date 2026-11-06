@@ -86,7 +86,7 @@ public class Input {
             char c = Character.toLowerCase(ch(mensagem));
             if(c == 'y') return true;
             if (c == 'n') return false;
-            System.out.println("");
+            System.out.println("Entrada Inválida: Nenhuma opção foi selecionada.");
         }
     }
 
