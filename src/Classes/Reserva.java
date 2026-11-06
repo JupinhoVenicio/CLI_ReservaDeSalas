@@ -9,6 +9,27 @@ public class Reserva {
     private LocalDateTime dataHorarioInicio;
     private LocalDateTime dataHorarioFim;
 
+    public Reserva(Sala sala, LocalDateTime dataHorarioInicio, LocalDateTime dataHorarioFim) {
+        if (sala == null) {
+            throw new IllegalArgumentException("\nErro: Reserva precisa ser vinculada a uma sala.");
+        }
+        this.sala = sala;
+        if (sala.getNome() == null) {
+            throw new IllegalArgumentException("\nErro: Sala vinculada não possui nome.");
+        }
+        this.nomeSalaReservada = sala.getNome();
+        if (dataHorarioInicio.isAfter(dataHorarioFim)) {
+            throw new IllegalArgumentException(
+                    "\nEntrada Inválida: Data/Horário de inicio não pode ser depois que a Data/Horário de fim.");
+        } else if (dataHorarioInicio.isEqual(dataHorarioFim)) {
+            throw new IllegalArgumentException("\nEntrada Inválida: Data/Horário de início não podem iguais.");
+        } else if (dataHorarioInicio.isBefore(LocalDateTime.now())) {
+            throw new IllegalArgumentException("\nEntrada Inválida: Data/Horário de início não podem ser no passado.");
+        }
+        this.dataHorarioInicio = dataHorarioInicio;
+        this.dataHorarioFim = dataHorarioFim;
+    }
+
     public void setSala(Sala sala) {
         this.sala = sala;
     }
@@ -19,11 +40,12 @@ public class Reserva {
 
     public void setHorario(LocalDateTime dataHorarioInicio, LocalDateTime dataHorarioFim) {
         if (dataHorarioInicio.isAfter(dataHorarioFim)) {
-            throw new IllegalArgumentException("\nData/Horário de inicio não pode ser depois que a Data/Horário de fim.");
+            throw new IllegalArgumentException(
+                    "\nEntrada Inválida: Data/Horário de inicio não pode ser depois que a Data/Horário de fim.");
         } else if (dataHorarioInicio.isEqual(dataHorarioFim)) {
-            throw new IllegalArgumentException("\nData/Horário de início não podem iguais.");
+            throw new IllegalArgumentException("\nEntrada Inválida: Data/Horário de início não podem iguais.");
         } else if (dataHorarioInicio.isBefore(LocalDateTime.now())) {
-            throw new IllegalArgumentException("\nData/Horário de início não podem ser no passado.");
+            throw new IllegalArgumentException("\nEntrada Inválida: Data/Horário de início não podem ser no passado.");
         } else {
 
             this.dataHorarioInicio = dataHorarioInicio;
