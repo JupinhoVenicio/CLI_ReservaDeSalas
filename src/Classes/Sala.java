@@ -1,13 +1,12 @@
 package Classes;
 
-import Classes.Enums.SalaStatus;
 
 public class Sala {
 
     private String nome;
     private int capacidade;
     private boolean temProjetor;
-    private SalaStatus statusDeReserva = SalaStatus.DISPONIVEL;
+    
 
 
     
@@ -74,19 +73,6 @@ public class Sala {
             throw new IllegalArgumentException("\nErro: Condição do projetor não foi encontrada!");
         }
 
-    }
-
-    public SalaStatus getStatusDeReserva() {
-
-        return statusDeReserva;
-    }
-
-    public void reservarStatus() {
-        this.statusDeReserva = SalaStatus.RESERVADA;
-    }
-
-    public void desreservarStatus() {
-        this.statusDeReserva = SalaStatus.DISPONIVEL;
     }
 
 }

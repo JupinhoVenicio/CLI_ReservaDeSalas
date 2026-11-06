@@ -6,7 +6,6 @@ import Classes.Input;
 import Classes.Reserva;
 import Classes.Sala;
 import Classes.Enums.MenuOpcoes;
-import Classes.Enums.SalaStatus;
 
 public class App {
 
@@ -53,7 +52,7 @@ public class App {
 
                 Sala sala = gerenciador.getAtributosDaSalaTotal(userInput - 1);
 
-                if (sala.getStatusDeReserva() == SalaStatus.RESERVADA) {
+                if (!gerenciador.salaPossuiNenhumaReserva(sala)) {
                     System.out.println("\nSala contém reservas. Cancele todas para remover.");
 
                 } else {
