@@ -42,7 +42,7 @@ public class App {
 
             int userInput;
 
-            gerenciador.listarSalasTotais();
+            System.out.println(gerenciador.listarSalasTotais()); 
 
             userInput = Input.in("\nRemova uma sala (Número da Lista): ");
 
@@ -69,7 +69,7 @@ public class App {
     public void executarListarSalas() {
 
         if (!gerenciador.nenhumaSala()) {
-            gerenciador.listarSalasTotais();
+            System.out.println(gerenciador.listarSalasTotais()); 
 
         } else {
             System.out.println("\nNenhuma sala foi cadastrada.");
@@ -88,7 +88,7 @@ public class App {
         } else {
 
             try {
-                gerenciador.listarSalasTotais();
+                System.out.println(gerenciador.listarSalasTotais()); 
 
                 userInput = Input.in("\nEscolha uma sala (Número da Lista): ");
 
@@ -131,7 +131,7 @@ public class App {
 
             } else {
 
-                gerenciador.listarSalasReservadas();
+                System.out.println(gerenciador.listarSalasReservadas());
 
                 userInput = Input.in("\nRemova uma reserva (Número da Lista)");
 
@@ -157,7 +157,7 @@ public class App {
     public void executarListarReservas() {
 
         if (!gerenciador.nenhumaSalaReservada()) {
-            gerenciador.listarSalasReservadas();
+            System.out.println(gerenciador.listarSalasReservadas());
 
         } else {
             System.out.println("\nNenhuma sala foi reservada.");
