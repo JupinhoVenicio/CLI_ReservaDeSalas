@@ -114,4 +114,18 @@ public class GerenciadorDeSalas {
         return salasReservadas.isEmpty();
     }
 
+    public boolean salaPossuiNenhumaReserva(Sala sala) {
+
+        for (Reserva reserva : salasReservadas) {
+
+            if (reserva.getSala() == sala) {
+
+                return false;
+
+            }
+
+        }
+        return true;
+
+    }
 }
