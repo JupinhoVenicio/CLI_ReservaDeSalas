@@ -16,17 +16,18 @@ public class App {
 
         try {
 
-            Sala salaNova = new Sala();
+            
 
             String nome = Input.st("\n\nNome da Sala: ");
 
-            salaNova.setNome(nome);
-
+        
             int capacidade = Input.in("\n\nCapacidade da Sala (Pessoas): ");
-            salaNova.setCapacidade(capacidade);
+            
 
-            char projetor = Input.ch("\n\nTem projetor (Y/N)\nY = Sim\t\tN = Não");
-            salaNova.setProjetor(projetor);
+            boolean projetor = Input.yn("\n\nTem projetor (Y/N)\nY = Sim\t\tN = Não");
+
+            Sala salaNova = new Sala(nome, capacidade, projetor);
+           
 
             gerenciador.registrarSala(salaNova);
             System.out.println("\nSala Cadastrada.");
@@ -39,7 +40,7 @@ public class App {
 
     public void executarRemoverSala() {
 
-        if (gerenciador.isNenhumaSala() == true) {
+        if (gerenciador.nenhumaSala() == true) {
 
             System.out.println("\nNenhuma sala foi cadastrada.");
 
@@ -73,7 +74,7 @@ public class App {
 
     public void executarListarSalas() {
 
-        if (!gerenciador.isNenhumaSala()) {
+        if (!gerenciador.nenhumaSala()) {
             gerenciador.listarSalasTotais();
 
         } else {
@@ -86,7 +87,7 @@ public class App {
 
         int userInput;
 
-        if (gerenciador.isNenhumaSala() == true) {
+        if (gerenciador.nenhumaSala() == true) {
 
             System.out.println("\nNenhuma sala foi cadastrada.");
 
@@ -136,7 +137,7 @@ public class App {
 
         int userInput;
         try {
-            if (gerenciador.isNenhumaSalaReservada()) {
+            if (gerenciador.nenhumaSalaReservada()) {
 
                 System.out.println("\nNenhuma sala foi reservada.");
 
@@ -167,7 +168,7 @@ public class App {
 
     public void executarListarReservas() {
 
-        if (!gerenciador.isNenhumaSalaReservada()) {
+        if (!gerenciador.nenhumaSalaReservada()) {
             gerenciador.listarSalasReservadas();
 
         } else {
