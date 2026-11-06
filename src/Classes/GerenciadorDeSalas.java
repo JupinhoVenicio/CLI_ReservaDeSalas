@@ -106,19 +106,12 @@ public class GerenciadorDeSalas {
         return salasReservadas.get(index);
     }
 
-    public boolean isNenhumaSala() {
-        if (salasTotais.size() == 0) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean nenhumaSala() {
+        return salasTotais.isEmpty();
     }
 
-    public boolean isNenhumaSalaReservada() {
-        if (salasReservadas.size() == 0) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean nenhumaSalaReservada() {
+        return salasReservadas.isEmpty();
     }
+
 }
