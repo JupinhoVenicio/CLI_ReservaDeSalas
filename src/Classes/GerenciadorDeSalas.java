@@ -1,4 +1,5 @@
 package Classes;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -6,18 +7,18 @@ public class GerenciadorDeSalas {
     private ArrayList<Sala> salasTotais = new ArrayList<>();
     private ArrayList<Reserva> salasReservadas = new ArrayList<>();
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH/mm");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm");
 
     public boolean temHorarioConflito(Sala sala, Reserva salaNova) {
 
         for (Reserva index : salasReservadas) {
 
             if (sala == index.getSala()) {
-                if (salaNova.getDataHorarioFim().isBefore(index.getDataHorarioInicio())||salaNova.getDataHorarioFim().isEqual(index.getDataHorarioInicio())) {
 
-                } else if (salaNova.getDataHorarioInicio().isAfter(index.getDataHorarioFim())||salaNova.getDataHorarioInicio().isEqual(index.getDataHorarioFim())) {
+                boolean fimNovoAntesDoInicioIndex = salaNova.getDataHorarioFim().isBefore(index.getDataHorarioInicio());
+                boolean inicioNovoDepoisDofimIndex = salaNova.getDataHorarioInicio().isAfter(index.getDataHorarioFim());
 
-                } else {
+                if (!fimNovoAntesDoInicioIndex && inicioNovoDepoisDofimIndex) {
                     return true;
                 }
 
@@ -82,7 +83,8 @@ public class GerenciadorDeSalas {
         for (Reserva sala : salasReservadas) {
 
             System.out.println("\n" + (i) + " - Sala: " + sala.getNomeSalaReservada() + "\n\tInício: "
-                    + sala.getDataHorarioInicio().format(formatter) + "\n\tFim: " + sala.getDataHorarioFim().format(formatter));
+                    + sala.getDataHorarioInicio().format(formatter) + "\n\tFim: "
+                    + sala.getDataHorarioFim().format(formatter));
             i = i + 1;
         }
 
