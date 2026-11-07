@@ -11,7 +11,8 @@ public class GerenciadorDeSalas {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm");
 
-    public boolean temHorarioConflito(Sala sala, LocalDateTime dataHorarioInicio, LocalDateTime dataHorarioFim) {
+    public List<Reserva> buscarConflitos(Sala sala, LocalDateTime dataHorarioInicio, LocalDateTime dataHorarioFim) {
+        List<Reserva> conflitos = new ArrayList<>();
 
         for (Reserva index : salasReservadas) {
 
@@ -21,12 +22,12 @@ public class GerenciadorDeSalas {
                 boolean inicioNovoDepoisDofimIndex = !dataHorarioInicio.isBefore(index.getDataHorarioFim());
 
                 if (!(fimNovoAntesDoInicioIndex || inicioNovoDepoisDofimIndex)) {
-                    return true;
+                    conflitos.add(index);
                 }
 
             }
         }
-        return false;
+        return conflitos;
     }
 
     public void registrarSala(Sala sala) {
@@ -40,8 +41,8 @@ public class GerenciadorDeSalas {
     }
 
     public void reservarSala(Reserva salaReservada) {
-        if (temHorarioConflito(salaReservada.getSala(), salaReservada.getDataHorarioInicio(),
-                salaReservada.getDataHorarioFim())) {
+        if (!(buscarConflitos(salaReservada.getSala(), salaReservada.getDataHorarioInicio(),
+                salaReservada.getDataHorarioFim()).isEmpty())) {
             throw new IllegalArgumentException("\nHorario em conflito com outra reserva.");
         }
         salasReservadas.add(salaReservada);
