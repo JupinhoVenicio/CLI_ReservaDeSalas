@@ -1,5 +1,6 @@
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import Classes.GerenciadorDeSalas;
 import Classes.Input;
@@ -42,7 +43,7 @@ public class App {
 
             int userInput;
 
-            System.out.println(gerenciador.listarSalasTotais()); 
+            System.out.println(gerenciador.listarSalasTotais());
 
             userInput = Input.in("\nRemova uma sala (Número da Lista): ");
 
@@ -69,7 +70,7 @@ public class App {
     public void executarListarSalas() {
 
         if (!gerenciador.nenhumaSala()) {
-            System.out.println(gerenciador.listarSalasTotais()); 
+            System.out.println(gerenciador.listarSalasTotais());
 
         } else {
             System.out.println("\nNenhuma sala foi cadastrada.");
@@ -88,7 +89,7 @@ public class App {
         } else {
 
             try {
-                System.out.println(gerenciador.listarSalasTotais()); 
+                System.out.println(gerenciador.listarSalasTotais());
 
                 userInput = Input.in("\nEscolha uma sala (Número da Lista): ");
 
@@ -103,12 +104,15 @@ public class App {
 
                     LocalDateTime dataHorarioFim = Input.ldt("\nHorário de Fim no formato 24h (dd/MM/yyyy HH:mm):\n\n");
 
-                    if (gerenciador.temHorarioConflito(sala, dataHorarioInicio, dataHorarioFim)) {
-                        System.out.println("\nHorario em conflito com outra reserva.");
-                    } else {
+                    List<Reserva> conflitos = gerenciador.buscarConflitos(sala, dataHorarioInicio, dataHorarioFim);
+
+                    if (conflitos.isEmpty()) {
                         Reserva reserva = new Reserva(sala, dataHorarioInicio, dataHorarioFim);
                         gerenciador.reservarSala(reserva);
                         System.out.println("\nReserva Efetuada.");
+                    } else {
+                        System.out.println("\nHorário em conflito com a(s) seguinte(s) reserva(s):");
+                        System.out.println(gerenciador.listarConflitos(conflitos));
                     }
 
                 }
