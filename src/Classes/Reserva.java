@@ -18,6 +18,9 @@ public class Reserva {
             throw new IllegalArgumentException("\nErro: Sala vinculada não possui nome.");
         }
         this.nomeSalaReservada = sala.getNome();
+        if (dataHorarioInicio == null || dataHorarioFim == null) {
+            throw new IllegalArgumentException("\nErro: Data/Horário não encontrado. Verifique o D/H de inicio e fim.");
+        }
         if (dataHorarioInicio.isAfter(dataHorarioFim)) {
             throw new IllegalArgumentException(
                     "\nEntrada Inválida: Data/Horário de inicio não pode ser depois que a Data/Horário de fim.");
@@ -31,14 +34,26 @@ public class Reserva {
     }
 
     public void setSala(Sala sala) {
+        if (sala == null) {
+            throw new IllegalArgumentException("\nErro: Reserva precisa ser vinculada a uma sala.");
+        }
         this.sala = sala;
     }
 
     public void setNomeSalaReservada() {
+        if (sala == null) {
+            throw new IllegalArgumentException("\nErro: Reserva precisa ser vinculada a uma sala.");
+        }
+        if (sala.getNome() == null) {
+            throw new IllegalArgumentException("\nErro: Sala vinculada não possui nome.");
+        }
         this.nomeSalaReservada = this.sala.getNome();
     }
 
     public void setHorario(LocalDateTime dataHorarioInicio, LocalDateTime dataHorarioFim) {
+        if (dataHorarioInicio == null || dataHorarioFim == null) {
+            throw new IllegalArgumentException("\nErro: Data/Horário não encontrado. Verifique o D/H de inicio e fim.");
+        }
         if (dataHorarioInicio.isAfter(dataHorarioFim)) {
             throw new IllegalArgumentException(
                     "\nEntrada Inválida: Data/Horário de inicio não pode ser depois que a Data/Horário de fim.");
