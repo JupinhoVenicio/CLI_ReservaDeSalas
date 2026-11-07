@@ -81,6 +81,18 @@ public class GerenciadorDeSalas {
 
     }
 
+    public String listarConflitos(List<Reserva> conflitos) {
+
+        StringBuilder sb = new StringBuilder();
+        for (Reserva sala : conflitos) {
+
+            sb.append("\n" + sala);
+
+        }
+
+        return sb.toString();
+    }
+
     public int getSalasTotaisSize() {
         return salasTotais.size();
     }
