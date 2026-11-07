@@ -52,7 +52,7 @@ public class App {
 
                 Sala sala = gerenciador.getAtributosDaSalaTotal(userInput - 1);
 
-                if (!gerenciador.salaPossuiNenhumaReserva(sala)) {
+                if (gerenciador.temReserva(sala)) {
                     System.out.println("\nSala contém reservas. Cancele todas para remover.");
 
                 } else {
