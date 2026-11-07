@@ -1,6 +1,7 @@
 package Classes;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Reserva {
 
@@ -8,6 +9,15 @@ public class Reserva {
     private String nomeSalaReservada;
     private LocalDateTime dataHorarioInicio;
     private LocalDateTime dataHorarioFim;
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm");
+
+    @Override
+    public String toString() {
+        return String.format("Sala: %s%n\tInício: %s%n\tFim: %s", 
+            nomeSalaReservada, 
+            dataHorarioInicio.format(formatter), 
+            dataHorarioFim.format(formatter));
+    }
 
     public Reserva(Sala sala, LocalDateTime dataHorarioInicio, LocalDateTime dataHorarioFim) {
         if (sala == null) {
@@ -52,7 +62,7 @@ public class Reserva {
             throw new IllegalArgumentException(
                     "\nEntrada Inválida: Data/Horário de inicio não pode ser depois que a Data/Horário de fim.");
         } else if (dataHorarioInicio.isEqual(dataHorarioFim)) {
-            throw new IllegalArgumentException("\nEntrada Inválida: Data/Horário de início não podem iguais.");
+            throw new IllegalArgumentException("\nEntrada Inválida: Data/Horário de início não podem ser iguais.");
         } else if (dataHorarioInicio.isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("\nEntrada Inválida: Data/Horário de início não podem ser no passado.");
         } else {
