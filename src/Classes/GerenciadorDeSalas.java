@@ -40,7 +40,8 @@ public class GerenciadorDeSalas {
     }
 
     public void reservarSala(Reserva salaReservada) {
-        if (temHorarioConflito(salaReservada.getSala(), salaReservada.getDataHorarioInicio(), salaReservada.getDataHorarioFim())){
+        if (temHorarioConflito(salaReservada.getSala(), salaReservada.getDataHorarioInicio(),
+                salaReservada.getDataHorarioFim())) {
             throw new IllegalArgumentException("\nHorario em conflito com outra reserva.");
         }
         salasReservadas.add(salaReservada);
@@ -72,9 +73,7 @@ public class GerenciadorDeSalas {
         StringBuilder sb = new StringBuilder();
         for (Reserva sala : salasReservadas) {
 
-            sb.append("\n" + (i) + " - Sala: " + sala.getNomeSalaReservada() + "\n\tInício: "
-                    + sala.getDataHorarioInicio().format(formatter) + "\n\tFim: "
-                    + sala.getDataHorarioFim().format(formatter));
+            sb.append("\n" + (i) + " - " + sala);
             i = i + 1;
         }
 
