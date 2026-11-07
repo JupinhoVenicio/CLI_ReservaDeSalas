@@ -6,6 +6,14 @@ public class Sala {
     private int capacidade;
     private boolean temProjetor;
 
+    @Override
+    public String toString() {
+        return String.format("Sala: %s%n\tCapacidade: %s%n\tTem projetor: %s", 
+            nome, 
+            capacidade,
+            getProjetor());
+    }
+
     public Sala(String nome, int capacidade, boolean temProjetor) {
 
         if (nome == null || nome.isBlank()) {
