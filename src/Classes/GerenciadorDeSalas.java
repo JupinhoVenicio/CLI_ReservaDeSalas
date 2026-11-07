@@ -60,8 +60,7 @@ public class GerenciadorDeSalas {
         StringBuilder sb = new StringBuilder();
         for (Sala sala : salasTotais) {
 
-            sb.append("\n" + (i) + " - Sala: " + sala.getNome() + " | Capacidade: " + sala.getCapacidade()
-                    + " | Tem projetor: " + sala.getProjetor());
+            sb.append("\n" + (i) + " - " + sala);
             i = i + 1;
         }
         return sb.toString();
