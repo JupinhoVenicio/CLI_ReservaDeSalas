@@ -3,10 +3,11 @@ package Classes;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GerenciadorDeSalas {
-    private ArrayList<Sala> salasTotais = new ArrayList<>();
-    private ArrayList<Reserva> salasReservadas = new ArrayList<>();
+    private List<Sala> salasTotais = new ArrayList<>();
+    private List<Reserva> salasReservadas = new ArrayList<>();
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm");
 
@@ -39,6 +40,9 @@ public class GerenciadorDeSalas {
     }
 
     public void reservarSala(Reserva salaReservada) {
+        if (temHorarioConflito(salaReservada.getSala(), salaReservada.getDataHorarioInicio(), salaReservada.getDataHorarioFim())){
+            throw new IllegalArgumentException("\nHorario em conflito com outra reserva.");
+        }
         salasReservadas.add(salaReservada);
 
     }
