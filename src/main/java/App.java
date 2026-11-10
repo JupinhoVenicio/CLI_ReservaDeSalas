@@ -7,7 +7,7 @@ import classes.GerenciadorDeSalas;
 import classes.Reserva;
 import classes.Sala;
 import console.Input;
-import menuopcoes.MenuOpcoes;
+import menuopcoes.MainMenu;
 
 public class App {
 
@@ -174,13 +174,13 @@ public class App {
 
         App app = new App();
 
-        MenuOpcoes opcaoEscolhida;
+        MainMenu opcaoEscolhida;
 
         do {
 
             System.out.println("\n-----Sistema de Reserva de Salas-----");
 
-            for (MenuOpcoes opcao : MenuOpcoes.values()) {
+            for (MainMenu opcao : MainMenu.values()) {
                 System.out.println("\n" + opcao.getId() + " - " + opcao.getLabel());
             }
 
@@ -188,7 +188,7 @@ public class App {
 
             int userInput = Input.in("\nEscolha (Número da Lista): ");
 
-            opcaoEscolhida = MenuOpcoes.fromNum(userInput);
+            opcaoEscolhida = MainMenu.fromNum(userInput);
 
             if (opcaoEscolhida == null) {
                 System.out.println("\nOpção Inválida.");
@@ -223,7 +223,7 @@ public class App {
                 }
             }
 
-        } while (opcaoEscolhida != MenuOpcoes.SAIR);
+        } while (opcaoEscolhida != MainMenu.SAIR);
 
     }
 

@@ -1,6 +1,6 @@
 package menuopcoes;
 
-public enum MenuOpcoes {
+public enum MainMenu {
 
     CADASTRAR_SALA("Cadastrar Sala"),
     REMOVER_SALA("Remover Sala"),
@@ -13,7 +13,7 @@ public enum MenuOpcoes {
     private final String label;
     private final int id;
 
-    MenuOpcoes(String label) {
+    MainMenu(String label) {
         this.label = label;
         this.id = idCounter.nextId();
 
@@ -28,9 +28,9 @@ public enum MenuOpcoes {
         return id;
     }
 
-    public static MenuOpcoes fromNum(int num) {
+    public static MainMenu fromNum(int num) {
 
-        for (MenuOpcoes index : MenuOpcoes.values()) {
+        for (MainMenu index : MainMenu.values()) {
             if (num == index.getId()) {
                 return index;
             }
