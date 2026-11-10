@@ -1,12 +1,13 @@
 
+
 import java.time.LocalDateTime;
 import java.util.List;
 
-import Classes.GerenciadorDeSalas;
-import Classes.Input;
-import Classes.Reserva;
-import Classes.Sala;
-import Classes.Enums.MenuOpcoes;
+import classes.GerenciadorDeSalas;
+import classes.Reserva;
+import classes.Sala;
+import classes.enums.MenuOpcoes;
+import console.Input;
 
 public class App {
 

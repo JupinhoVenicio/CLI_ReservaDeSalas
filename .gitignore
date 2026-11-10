@@ -4,3 +4,5 @@
 bin/
 # Ignore compiled java bytecode files
 *.class
+# Ignore Maven target folder
+target/
