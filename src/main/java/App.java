@@ -181,7 +181,7 @@ public class App {
             System.out.println("\n-----Sistema de Reserva de Salas-----");
 
             for (MenuOpcoes opcao : MenuOpcoes.values()) {
-                System.out.println("\n" + opcao.getNum() + " - " + opcao.getLabel());
+                System.out.println("\n" + opcao.getId() + " - " + opcao.getLabel());
             }
 
             System.out.println("\n----------------------------------------");
