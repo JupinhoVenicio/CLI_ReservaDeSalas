@@ -6,8 +6,8 @@ import java.util.List;
 import classes.GerenciadorDeSalas;
 import classes.Reserva;
 import classes.Sala;
-import classes.enums.MenuOpcoes;
 import console.Input;
+import menuopcoes.MenuOpcoes;
 
 public class App {
 

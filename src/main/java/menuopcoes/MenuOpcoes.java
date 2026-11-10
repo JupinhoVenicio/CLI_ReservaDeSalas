@@ -1,4 +1,4 @@
-package classes.enums;
+package menuopcoes;
 
 public enum MenuOpcoes {
 
