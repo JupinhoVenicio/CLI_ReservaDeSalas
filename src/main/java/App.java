@@ -7,6 +7,7 @@ import classes.Reserva;
 import classes.Sala;
 import console.Input;
 import menuopcoes.MainMenu;
+import menuopcoes.ReservaMenu;
 import menuopcoes.SalaMenu;
 
 public class App {
@@ -211,7 +212,7 @@ public class App {
                         executarSalaMenu();
                         break;
                     case RESERVA_MENU:
-                        executarRemoverSala();
+                        executarReservaMenu();
                         break;
 
                     case SAIR:
@@ -275,6 +276,58 @@ public class App {
             }
 
         } while (opcaoEscolhida != SalaMenu.VOLTAR);
+
+    }
+
+    private void executarReservaMenu() {
+
+        ReservaMenu opcaoEscolhida;
+
+        do {
+
+            System.out.println("\n-----Opções de Reservas-----");
+
+            for (ReservaMenu opcao : ReservaMenu.values()) {
+                System.out.println("\n" + opcao.getId() + " - " + opcao.getLabel());
+            }
+
+            System.out.println("\n----------------------------------------");
+
+            int userInput = Input.in("\nEscolha (Número da Lista): ");
+
+            opcaoEscolhida = ReservaMenu.fromNum(userInput);
+
+            if (opcaoEscolhida == null) {
+                System.out.println("\nOpção Inválida.");
+
+            } else {
+
+                switch (opcaoEscolhida) {
+
+                    case CRIAR_RESERVA:
+                        executarCriarReserva();
+                        break;
+                    case EDITAR_RESERVA:
+                        executarRemoverSala();
+                        break;
+
+                    case CANCELAR_RESERVA:
+                        executarCancelarReserva();
+                        break;
+
+                    case LISTAR_RESERVAS:
+                        executarListarReservas();
+                        break;
+
+                    case VOLTAR:
+                        break;
+
+                    default:
+
+                }
+            }
+
+        } while (opcaoEscolhida != ReservaMenu.VOLTAR);
 
     }
 
