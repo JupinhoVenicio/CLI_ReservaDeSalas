@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GerenciadorDeSalas {
-    private List<Sala> salasTotais = new ArrayList<>();
-    private List<Reserva> salasReservadas = new ArrayList<>();
+    private List<Sala> salas = new ArrayList<>();
+    private List<Reserva> reservas = new ArrayList<>();
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm");
 
     public List<Reserva> buscarConflitos(Sala sala, LocalDateTime dataHorarioInicio, LocalDateTime dataHorarioFim) {
         List<Reserva> conflitos = new ArrayList<>();
 
-        for (Reserva index : salasReservadas) {
+        for (Reserva index : reservas) {
 
             if (sala.equals(index.getSala())) {
 
@@ -31,34 +31,34 @@ public class GerenciadorDeSalas {
     }
 
     public void registrarSala(Sala sala) {
-        salasTotais.add(sala);
+        salas.add(sala);
 
     }
 
     public void removerSala(Sala sala) {
-        salasTotais.remove(sala);
+        salas.remove(sala);
 
     }
 
     public void editarSala(Sala salaAntiga, Sala salaNova) {
-        int posicao = salasTotais.indexOf(salaAntiga);
-        salasTotais.set(posicao, salaNova);
+        int posicao = salas.indexOf(salaAntiga);
+        salas.set(posicao, salaNova);
     }
 
-    public void reservarSala(Reserva salaReservada) {
-        List<Reserva> conflitos = buscarConflitos(salaReservada.getSala(), salaReservada.getDataHorarioInicio(),
-                salaReservada.getDataHorarioFim());
+    public void reservar(Reserva reserva) {
+        List<Reserva> conflitos = buscarConflitos(reserva.getSala(), reserva.getDataHorarioInicio(),
+                reserva.getDataHorarioFim());
         if (!(conflitos.isEmpty())) {
             throw new IllegalArgumentException(
                     "\nData/Horário em conflito com a(s) seguinte(s) reserva(s):\n" + listarConflitos(conflitos));
         }
-        salasReservadas.add(salaReservada);
+        reservas.add(reserva);
 
     }
 
-    public void desreservarSala(Reserva salaReservada) {
+    public void desreservar(Reserva reserva) {
 
-        salasReservadas.remove(salaReservada);
+        reservas.remove(reserva);
 
     }
 
@@ -70,15 +70,15 @@ public class GerenciadorDeSalas {
             throw new IllegalArgumentException(
                     "\nData/Horário em conflito com a(s) seguinte(s) reserva(s):\n" + listarConflitos(conflitos));
         }
-        int posicao = salasReservadas.indexOf(reservaAntiga);
-        salasReservadas.set(posicao, reservaNova);
+        int posicao = reservas.indexOf(reservaAntiga);
+        reservas.set(posicao, reservaNova);
     }
 
-    public String listarSalasTotais() {
+    public String listarSalas() {
 
         int i = 1;
         StringBuilder sb = new StringBuilder();
-        for (Sala sala : salasTotais) {
+        for (Sala sala : salas) {
 
             sb.append("\n" + (i) + " - " + sala);
             i = i + 1;
@@ -86,13 +86,13 @@ public class GerenciadorDeSalas {
         return sb.toString();
     }
 
-    public String listarSalasReservadas() {
+    public String listarReservas() {
 
         int i = 1;
         StringBuilder sb = new StringBuilder();
-        for (Reserva sala : salasReservadas) {
+        for (Reserva reserva : reservas) {
 
-            sb.append("\n" + (i) + " - " + sala);
+            sb.append("\n" + (i) + " - " + reserva);
             i = i + 1;
         }
 
@@ -113,32 +113,32 @@ public class GerenciadorDeSalas {
     }
 
     public int getSalasTotaisSize() {
-        return salasTotais.size();
+        return salas.size();
     }
 
     public int getSalasReservadasSize() {
-        return salasReservadas.size();
+        return reservas.size();
     }
 
-    public Sala getAtributosDaSalaTotal(int index) {
-        return salasTotais.get(index);
+    public Sala getAtributosDaSala(int index) {
+        return salas.get(index);
     }
 
-    public Reserva getAtributosDaSalaReservada(int index) {
-        return salasReservadas.get(index);
+    public Reserva getAtributosDaReserva(int index) {
+        return reservas.get(index);
     }
 
     public boolean nenhumaSala() {
-        return salasTotais.isEmpty();
+        return salas.isEmpty();
     }
 
-    public boolean nenhumaSalaReservada() {
-        return salasReservadas.isEmpty();
+    public boolean nenhumaReserva() {
+        return reservas.isEmpty();
     }
 
     public boolean temReserva(Sala sala) {
 
-        for (Reserva reserva : salasReservadas) {
+        for (Reserva reserva : reservas) {
 
             if (reserva.getSala() == sala) {
 

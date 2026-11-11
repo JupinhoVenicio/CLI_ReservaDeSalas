@@ -39,6 +39,50 @@ public class App {
 
     }
 
+    private void executarEditarSala() {
+
+        if (gerenciador.nenhumaSala() == true) {
+
+            System.out.println("\nNenhuma sala foi cadastrada.");
+
+        } else {
+
+            int userInput;
+
+            System.out.println(gerenciador.listarSalas());
+
+            userInput = Input.in("\nEscolha uma sala (Número da Lista): ");
+
+            if ((userInput - 1) < 0 || (userInput - 1) >= gerenciador.getSalasTotaisSize()) {
+                System.out.println("Opção Inválida.");
+            } else {
+
+                Sala salaAntiga = gerenciador.getAtributosDaSala(userInput - 1);
+
+            }
+
+        }
+
+        try {
+
+            String nome = Input.st("\n\nNome da Sala: ");
+
+            int capacidade = Input.in("\n\nCapacidade da Sala (Pessoas): ");
+
+            boolean projetor = Input.yn("\n\nTem projetor (Y/N)\nY = Sim\t\tN = Não");
+
+            Sala salaNova = new Sala(nome, capacidade, projetor);
+
+            gerenciador.registrarSala(salaNova);
+            int posicao = gerenciador.indexOf(salaAntiga);
+            System.out.println("\nSala Cadastrada.");
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("\n" + e.getMessage());
+        }
+
+    }
+
     private void executarRemoverSala() {
 
         if (gerenciador.nenhumaSala() == true) {
@@ -49,7 +93,7 @@ public class App {
 
             int userInput;
 
-            System.out.println(gerenciador.listarSalasTotais());
+            System.out.println(gerenciador.listarSalas());
 
             userInput = Input.in("\nRemova uma sala (Número da Lista): ");
 
@@ -57,7 +101,7 @@ public class App {
                 System.out.println("Opção Inválida.");
             } else {
 
-                Sala sala = gerenciador.getAtributosDaSalaTotal(userInput - 1);
+                Sala sala = gerenciador.getAtributosDaSala(userInput - 1);
 
                 if (gerenciador.temReserva(sala)) {
                     System.out.println("\nSala contém reservas. Cancele todas para remover.");
@@ -76,7 +120,7 @@ public class App {
     private void executarListarSalas() {
 
         if (!gerenciador.nenhumaSala()) {
-            System.out.println(gerenciador.listarSalasTotais());
+            System.out.println(gerenciador.listarSalas());
 
         } else {
             System.out.println("\nNenhuma sala foi cadastrada.");
@@ -95,7 +139,7 @@ public class App {
         } else {
 
             try {
-                System.out.println(gerenciador.listarSalasTotais());
+                System.out.println(gerenciador.listarSalas());
 
                 userInput = Input.in("\nEscolha uma sala (Número da Lista): ");
 
@@ -103,7 +147,7 @@ public class App {
                     System.out.println("Opção Inválida.");
                 } else {
 
-                    Sala sala = gerenciador.getAtributosDaSalaTotal(userInput - 1);
+                    Sala sala = gerenciador.getAtributosDaSala(userInput - 1);
 
                     LocalDateTime dataHorarioInicio = Input
                             .ldt("\nHorário de Início no formato 24h (dd/MM/yyyy HH:mm):\n\n");
@@ -114,7 +158,7 @@ public class App {
 
                     if (conflitos.isEmpty()) {
                         Reserva reserva = new Reserva(sala, dataHorarioInicio, dataHorarioFim);
-                        gerenciador.reservarSala(reserva);
+                        gerenciador.reservar(reserva);
                         System.out.println("\nReserva Efetuada.");
                     } else {
                         System.out.println("\nHorário em conflito com a(s) seguinte(s) reserva(s):");
@@ -135,13 +179,13 @@ public class App {
 
         int userInput;
         try {
-            if (gerenciador.nenhumaSalaReservada()) {
+            if (gerenciador.nenhumaReserva()) {
 
                 System.out.println("\nNenhuma sala foi reservada.");
 
             } else {
 
-                System.out.println(gerenciador.listarSalasReservadas());
+                System.out.println(gerenciador.listarReservas());
 
                 userInput = Input.in("\nRemova uma reserva (Número da Lista)");
 
@@ -149,9 +193,9 @@ public class App {
                     System.out.println("Opção Inválida.");
                 } else {
 
-                    Reserva reserva = gerenciador.getAtributosDaSalaReservada(userInput - 1);
+                    Reserva reserva = gerenciador.getAtributosDaReserva(userInput - 1);
 
-                    gerenciador.desreservarSala(reserva);
+                    gerenciador.desreservar(reserva);
                     System.out.println("\nReserva Cancelada.");
                 }
 
@@ -166,8 +210,8 @@ public class App {
 
     private void executarListarReservas() {
 
-        if (!gerenciador.nenhumaSalaReservada()) {
-            System.out.println(gerenciador.listarSalasReservadas());
+        if (!gerenciador.nenhumaReserva()) {
+            System.out.println(gerenciador.listarReservas());
 
         } else {
             System.out.println("\nNenhuma sala foi reservada.");
