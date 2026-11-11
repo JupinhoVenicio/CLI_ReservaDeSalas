@@ -5,18 +5,17 @@ import java.time.format.DateTimeFormatter;
 
 public class Reserva {
 
-    private Sala sala;
-    private String nomeSalaReservada;
-    private LocalDateTime dataHorarioInicio;
-    private LocalDateTime dataHorarioFim;
+    private final Sala sala;
+    private final LocalDateTime dataHorarioInicio;
+    private final LocalDateTime dataHorarioFim;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm");
 
     @Override
     public String toString() {
-        return String.format("Sala: %s%n\tInício: %s%n\tFim: %s", 
-            nomeSalaReservada, 
-            dataHorarioInicio.format(formatter), 
-            dataHorarioFim.format(formatter));
+        return String.format("Sala: %s%n\tInício: %s%n\tFim: %s",
+                sala.getNome(),
+                dataHorarioInicio.format(formatter),
+                dataHorarioFim.format(formatter));
     }
 
     public Reserva(Sala sala, LocalDateTime dataHorarioInicio, LocalDateTime dataHorarioFim) {
@@ -24,7 +23,7 @@ public class Reserva {
             throw new IllegalArgumentException("\nErro: Reserva precisa ser vinculada a uma sala.");
         }
         this.sala = sala;
-        this.nomeSalaReservada = sala.getNome();
+
         if (dataHorarioInicio == null || dataHorarioFim == null) {
             throw new IllegalArgumentException("\nErro: Data/Horário não encontrado. Verifique o D/H de inicio e fim.");
         }
@@ -40,39 +39,6 @@ public class Reserva {
         this.dataHorarioFim = dataHorarioFim;
     }
 
-    public void setSala(Sala sala) {
-        if (sala == null) {
-            throw new IllegalArgumentException("\nErro: Reserva precisa ser vinculada a uma sala.");
-        }
-        this.sala = sala;
-    }
-
-    public void setNomeSalaReservada() {
-        if (sala == null) {
-            throw new IllegalArgumentException("\nErro: Reserva precisa ser vinculada a uma sala.");
-        }
-        this.nomeSalaReservada = this.sala.getNome();
-    }
-
-    public void setHorario(LocalDateTime dataHorarioInicio, LocalDateTime dataHorarioFim) {
-        if (dataHorarioInicio == null || dataHorarioFim == null) {
-            throw new IllegalArgumentException("\nErro: Data/Horário não encontrado. Verifique o D/H de inicio e fim.");
-        }
-        if (dataHorarioInicio.isAfter(dataHorarioFim)) {
-            throw new IllegalArgumentException(
-                    "\nEntrada Inválida: Data/Horário de inicio não pode ser depois que a Data/Horário de fim.");
-        } else if (dataHorarioInicio.isEqual(dataHorarioFim)) {
-            throw new IllegalArgumentException("\nEntrada Inválida: Data/Horário de início não podem ser iguais.");
-        } else if (dataHorarioInicio.isBefore(LocalDateTime.now())) {
-            throw new IllegalArgumentException("\nEntrada Inválida: Data/Horário de início não podem ser no passado.");
-        } else {
-
-            this.dataHorarioInicio = dataHorarioInicio;
-            this.dataHorarioFim = dataHorarioFim;
-
-        }
-    }
-
     public LocalDateTime getDataHorarioInicio() {
         return dataHorarioInicio;
     }
@@ -85,8 +51,5 @@ public class Reserva {
         return sala;
     }
 
-    public String getNomeSalaReservada() {
-        return nomeSalaReservada;
-    }
 
 }
