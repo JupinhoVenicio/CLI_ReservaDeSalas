@@ -2,12 +2,8 @@ package menuopcoes;
 
 public enum MainMenu {
 
-    CADASTRAR_SALA("Cadastrar Sala"),
-    REMOVER_SALA("Remover Sala"),
-    LISTAR_SALA("Listar Sala"),
-    CRIAR_RESERVA("Criar Reserva"),
-    CANCELAR_RESERVA("Cancelar Reserva"),
-    LISTAR_RESERVAS("Listar Reservas"),
+    SALA_MENU("Salas"),
+    RESERVA_MENU("Reservas"),
     SAIR("Sair");
 
     private final String label;

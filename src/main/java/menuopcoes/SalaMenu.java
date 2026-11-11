@@ -4,8 +4,9 @@ public enum SalaMenu {
 
 
     CADASTRAR_SALA("Cadastrar Sala"),
+    EDITAR_SALA ("Editar Sala"),
     REMOVER_SALA("Remover Sala"),
-    LISTAR_SALA("Listar Sala"),
+    LISTAR_SALA("Listar Salas"),
     SAIR("Sair");
 
     private final String label;

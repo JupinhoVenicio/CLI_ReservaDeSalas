@@ -3,6 +3,7 @@ package menuopcoes;
 public enum ReservaMenu {
 
     CRIAR_RESERVA("Criar Reserva"),
+    EDITAR_RESERVA("Editar Reserva"),
     CANCELAR_RESERVA("Cancelar Reserva"),
     LISTAR_RESERVAS("Listar Reservas"),
     SAIR("Sair");
