@@ -40,10 +40,17 @@ public class GerenciadorDeSalas {
 
     }
 
+    public void editarSala(Sala salaAntiga, Sala salaNova) {
+        int posicao = salasTotais.indexOf(salaAntiga);
+        salasTotais.set(posicao, salaNova);
+    }
+
     public void reservarSala(Reserva salaReservada) {
-        if (!(buscarConflitos(salaReservada.getSala(), salaReservada.getDataHorarioInicio(),
-                salaReservada.getDataHorarioFim()).isEmpty())) {
-            throw new IllegalArgumentException("\nHorario em conflito com outra reserva.");
+        List<Reserva> conflitos = buscarConflitos(salaReservada.getSala(), salaReservada.getDataHorarioInicio(),
+                salaReservada.getDataHorarioFim());
+        if (!(conflitos.isEmpty())) {
+            throw new IllegalArgumentException(
+                    "\nData/Horário em conflito com a(s) seguinte(s) reserva(s):\n" + listarConflitos(conflitos));
         }
         salasReservadas.add(salaReservada);
 
@@ -53,6 +60,18 @@ public class GerenciadorDeSalas {
 
         salasReservadas.remove(salaReservada);
 
+    }
+
+    public void editarReserva(Reserva reservaAntiga, LocalDateTime dataHorarioInicio, LocalDateTime dataHorarioFim) {
+        Reserva reservaNova = new Reserva(reservaAntiga.getSala(), dataHorarioInicio, dataHorarioFim);
+        List<Reserva> conflitos = buscarConflitos(reservaNova.getSala(), dataHorarioInicio, dataHorarioFim);
+        conflitos.remove(reservaAntiga);
+        if (!(conflitos.isEmpty())) {
+            throw new IllegalArgumentException(
+                    "\nData/Horário em conflito com a(s) seguinte(s) reserva(s):\n" + listarConflitos(conflitos));
+        }
+        int posicao = salasReservadas.indexOf(reservaAntiga);
+        salasReservadas.set(posicao, reservaNova);
     }
 
     public String listarSalasTotais() {
