@@ -26,9 +26,9 @@ public enum ReservaMenu {
         return id;
     }
 
-    public static MainMenu fromNum(int num) {
+    public static ReservaMenu fromNum(int num) {
 
-        for (MainMenu index : MainMenu.values()) {
+        for (ReservaMenu index : ReservaMenu.values()) {
             if (num == index.getId()) {
                 return index;
             }

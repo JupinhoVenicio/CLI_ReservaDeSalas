@@ -27,9 +27,9 @@ public enum SalaMenu {
         return id;
     }
 
-    public static MainMenu fromNum(int num) {
+    public static SalaMenu fromNum(int num) {
 
-        for (MainMenu index : MainMenu.values()) {
+        for (SalaMenu index : SalaMenu.values()) {
             if (num == index.getId()) {
                 return index;
             }
