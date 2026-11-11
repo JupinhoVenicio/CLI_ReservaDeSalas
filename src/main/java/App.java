@@ -1,5 +1,4 @@
 
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,9 +10,13 @@ import menuopcoes.MainMenu;
 
 public class App {
 
-    GerenciadorDeSalas gerenciador = new GerenciadorDeSalas();
+    private final GerenciadorDeSalas gerenciador;
 
-    public void executarCadastrarSala() {
+    public App (GerenciadorDeSalas gerenciador){
+        this.gerenciador = gerenciador;
+    }
+
+    private void executarCadastrarSala() {
 
         try {
 
@@ -34,7 +37,7 @@ public class App {
 
     }
 
-    public void executarRemoverSala() {
+    private void executarRemoverSala() {
 
         if (gerenciador.nenhumaSala() == true) {
 
@@ -68,7 +71,7 @@ public class App {
 
     }
 
-    public void executarListarSalas() {
+    private void executarListarSalas() {
 
         if (!gerenciador.nenhumaSala()) {
             System.out.println(gerenciador.listarSalasTotais());
@@ -79,7 +82,7 @@ public class App {
 
     }
 
-    public void executarCriarReserva() {
+    private void executarCriarReserva() {
 
         int userInput;
 
@@ -126,7 +129,7 @@ public class App {
 
     }
 
-    public void executarCancelarReserva() {
+    private void executarCancelarReserva() {
 
         int userInput;
         try {
@@ -159,7 +162,7 @@ public class App {
 
     }
 
-    public void executarListarReservas() {
+    private void executarListarReservas() {
 
         if (!gerenciador.nenhumaSalaReservada()) {
             System.out.println(gerenciador.listarSalasReservadas());
@@ -171,8 +174,10 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
+        new App(new GerenciadorDeSalas()).run();
+    }
 
-        App app = new App();
+    private void run() {
 
         MainMenu opcaoEscolhida;
 
@@ -197,24 +202,13 @@ public class App {
 
                 switch (opcaoEscolhida) {
 
-                    case CADASTRAR_SALA:
-                        app.executarCadastrarSala();
+                    case SALA_MENU:
+                        executarCadastrarSala();
                         break;
-                    case REMOVER_SALA:
-                        app.executarRemoverSala();
+                    case RESERVA_MENU:
+                        executarRemoverSala();
                         break;
-                    case LISTAR_SALA:
-                        app.executarListarSalas();
-                        break;
-                    case CRIAR_RESERVA:
-                        app.executarCriarReserva();
-                        break;
-                    case CANCELAR_RESERVA:
-                        app.executarCancelarReserva();
-                        break;
-                    case LISTAR_RESERVAS:
-                        app.executarListarReservas();
-                        break;
+
                     case SAIR:
                         break;
 
