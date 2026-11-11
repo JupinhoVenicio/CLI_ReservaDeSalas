@@ -7,12 +7,13 @@ import classes.Reserva;
 import classes.Sala;
 import console.Input;
 import menuopcoes.MainMenu;
+import menuopcoes.SalaMenu;
 
 public class App {
 
     private final GerenciadorDeSalas gerenciador;
 
-    public App (GerenciadorDeSalas gerenciador){
+    public App(GerenciadorDeSalas gerenciador) {
         this.gerenciador = gerenciador;
     }
 
@@ -177,7 +178,7 @@ public class App {
         new App(new GerenciadorDeSalas()).run();
     }
 
-    private void run(){
+    private void run() {
         executarMainMenu();
     }
 
@@ -207,7 +208,7 @@ public class App {
                 switch (opcaoEscolhida) {
 
                     case SALA_MENU:
-                        executarCadastrarSala();
+                        executarSalaMenu();
                         break;
                     case RESERVA_MENU:
                         executarRemoverSala();
@@ -222,6 +223,58 @@ public class App {
             }
 
         } while (opcaoEscolhida != MainMenu.SAIR);
+
+    }
+
+    private void executarSalaMenu() {
+
+        SalaMenu opcaoEscolhida;
+
+        do {
+
+            System.out.println("\n-----Opções de Salas-----");
+
+            for (SalaMenu opcao : SalaMenu.values()) {
+                System.out.println("\n" + opcao.getId() + " - " + opcao.getLabel());
+            }
+
+            System.out.println("\n----------------------------------------");
+
+            int userInput = Input.in("\nEscolha (Número da Lista): ");
+
+            opcaoEscolhida = SalaMenu.fromNum(userInput);
+
+            if (opcaoEscolhida == null) {
+                System.out.println("\nOpção Inválida.");
+
+            } else {
+
+                switch (opcaoEscolhida) {
+
+                    case CADASTRAR_SALA:
+                        executarCadastrarSala();
+                        break;
+                    case EDITAR_SALA:
+                        executarRemoverSala();
+                        break;
+
+                    case REMOVER_SALA:
+                        executarRemoverSala();
+                        break;
+
+                    case LISTAR_SALA:
+                        executarListarSalas();
+                        break;
+
+                    case VOLTAR:
+                        break;
+
+                    default:
+
+                }
+            }
+
+        } while (opcaoEscolhida != SalaMenu.VOLTAR);
 
     }
 
