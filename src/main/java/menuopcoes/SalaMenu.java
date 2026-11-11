@@ -7,7 +7,7 @@ public enum SalaMenu {
     EDITAR_SALA ("Editar Sala"),
     REMOVER_SALA("Remover Sala"),
     LISTAR_SALA("Listar Salas"),
-    SAIR("Sair");
+    VOLTAR("Voltar");
 
     private final String label;
     private final int id;

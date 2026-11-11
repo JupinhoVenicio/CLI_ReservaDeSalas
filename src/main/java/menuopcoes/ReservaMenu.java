@@ -6,7 +6,7 @@ public enum ReservaMenu {
     EDITAR_RESERVA("Editar Reserva"),
     CANCELAR_RESERVA("Cancelar Reserva"),
     LISTAR_RESERVAS("Listar Reservas"),
-    SAIR("Sair");
+    VOLTAR("Voltar");
 
     private final String label;
     private final int id;
