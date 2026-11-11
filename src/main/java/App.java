@@ -177,7 +177,11 @@ public class App {
         new App(new GerenciadorDeSalas()).run();
     }
 
-    private void run() {
+    private void run(){
+        executarMainMenu();
+    }
+
+    private void executarMainMenu() {
 
         MainMenu opcaoEscolhida;
 
